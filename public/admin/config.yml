@@ -1,0 +1,422 @@
+backend:
+  name: git-gateway
+  accept_roles:
+    - admin
+    - editor
+media_folder: theme/assets/images
+public_folder: /assets/images
+collections:
+  - name: pages
+    label: Pages
+    identifier_field: title
+    extension: md
+    create: false
+    delete: false
+    slug: '{{slug}}'
+    editor:
+      preview: false
+    folder: cms/pages
+    fields:
+      - label: Title
+        name: title
+        widget: string
+      - label: Publish Date
+        name: date
+        widget: datetime
+      - label: Layout
+        widget: hidden
+        name: layout
+        default: '{{slug}}.html'
+      - label: Seo
+        name: seo
+        widget: object
+        collapsed: true
+        fields:
+          - label: Title
+            name: title
+            widget: string
+            required: false
+          - label: Description
+            name: description
+            widget: string
+            required: false
+          - label: No index
+            name: noindex
+            widget: boolean
+            default: false
+            required: false
+          - label: Open Graph Title
+            name: og:title
+            widget: string
+            required: false
+          - label: Open Graph Image
+            name: og:image
+            widget: image
+            required: false
+            media_library:
+              config:
+                multiple: false
+          - label: Twitter Title
+            name: twitter:title
+            widget: string
+            default: summary
+            required: false
+          - label: Twitter Card
+            name: twitter:card
+            widget: string
+            default: summary
+            required: false
+          - label: Twitter Site
+            name: twitter:site
+            widget: string
+            required: false
+          - label: Twitter Creator
+            name: twitter:creator
+            widget: string
+            required: false
+          - label: Additional HTML tags
+            name: additional_tags
+            widget: text
+            required: false
+  - label: Theme Settings
+    name: settings
+    identifier_field: title
+    extension: json
+    create: false
+    delete: false
+    slug: '{{slug}}'
+    editor:
+      preview: false
+    files:
+      - label: General
+        name: site
+        file: cms/_data/settings/site.json
+        fields:
+          - label: Title
+            name: title
+            widget: hidden
+            default: General
+          - hint: Full domain url (needed for a correct sitemap file)
+            name: domain
+            label: Domain
+            widget: string
+            required: false
+          - name: favicon
+            label: Favicon
+            widget: image
+            allow_multiple: false
+            required: false
+          - name: apple_touch_icon
+            label: Apple Touch Icon
+            widget: image
+            allow_multiple: false
+            required: false
+          - name: header_additional_content
+            label: Additional Content Header
+            hint: Content here will be placed before </head> tag
+            widget: text
+            required: false
+          - name: footer_additional_content
+            label: Additional Content Footer
+            hint: Content here will be placed before </body> tag
+            widget: text
+            required: false
+          - name: images_optimization
+            label: Images Optimization
+            widget: object
+            collapsed: false
+            fields:
+              - label: Image Formats
+                name: formats
+                widget: select
+                multiple: true
+                options:
+                  - label: Avif
+                    value: avif
+                  - label: Webp
+                    value: webp
+              - label: Image Dimensions
+                name: dimensions
+                widget: select
+                multiple: true
+                options:
+                  - label: '500'
+                    value: 500
+                  - label: '800'
+                    value: 800
+                  - label: '1080'
+                    value: 1080
+                  - label: '1600'
+                    value: 1600
+                  - label: '2000'
+                    value: 2000
+                  - label: '2600'
+                    value: 2600
+      - label: Colors
+        name: colors
+        file: cms/_data/colors.json
+        fields:
+          - label: Title
+            name: title
+            widget: hidden
+            default: Colors
+      - label: Texts
+        name: texts
+        file: cms/_data/texts.json
+        fields:
+          - label: Title
+            name: title
+            widget: hidden
+            default: Texts
+          - hint: >-
+              Original text: Filter jobs by role name, location or company
+              name., key: 166ef70c
+            label: Text
+            name: 166ef70c
+            widget: string
+          - hint: >-
+              Original text: Try searching for jobs by typing relevant keywords:
+              ", key: 3a9a4097
+            label: Text
+            name: 3a9a4097
+            widget: string
+          - hint: 'Original text: Worlwide, key: 60c0105'
+            label: Text
+            name: 60c0105
+            widget: string
+          - hint: 'Original text: ", ", key: 101dcc'
+            label: Text
+            name: 101dcc
+            widget: string
+          - hint: 'Original text: Product, key: 50c664cf'
+            label: Text
+            name: 50c664cf
+            widget: string
+          - hint: 'Original text: UI, key: a94'
+            label: Text
+            name: a94
+            widget: string
+          - hint: 'Original text: remote, key: -37b507ba'
+            label: Text
+            name: '-37b507ba'
+            widget: string
+          - hint: 'Original text: Senior, key: -6c9ae5b0'
+            label: Text
+            name: '-6c9ae5b0'
+            widget: string
+          - hint: 'Original text: UX, key: aa3'
+            label: Text
+            name: aa3
+            widget: string
+          - hint: 'Original text: "..., key: 10270c'
+            label: Text
+            name: 10270c
+            widget: string
+          - hint: >-
+              Original text: Thank you! Your submission has been received!, key:
+              5a0ea5a1
+            label: Text
+            name: 5a0ea5a1
+            widget: string
+          - hint: >-
+              Original text: Oops! Something went wrong while submitting the
+              form., key: -7c112e99
+            label: Text
+            name: '-7c112e99'
+            widget: string
+          - hint: 'Original text: Find your next remote design job., key: -5c0e1560'
+            label: Text
+            name: '-5c0e1560'
+            widget: string
+          - hint: 'Original text: Design from anywhere 🌍 , key: -60386442'
+            label: Text
+            name: '-60386442'
+            widget: string
+          - hint: >-
+              Original text: Featuring remote design jobs. Showing aggregate
+              data from , key: -6fa34a67
+            label: Text
+            name: '-6fa34a67'
+            widget: string
+          - hint: 'Original text: RemoteOK.io, key: -18d7022e'
+            label: Text
+            name: '-18d7022e'
+            widget: string
+          - hint: 'Original text:  and , key: 1f0b149'
+            label: Text
+            name: 1f0b149
+            widget: string
+          - hint: 'Original text: Remotive, key: -1ab77f67'
+            label: Text
+            name: '-1ab77f67'
+            widget: string
+          - hint: 'Original text: ., key: 2e'
+            label: Text
+            name: 2e
+            widget: string
+          - hint: 'Original text: 227 REMOTE DESIGN JOBS, key: 223f0167'
+            label: Text
+            name: 223f0167
+            widget: string
+          - hint: 'Original text: Listing , key: 5418fa3c'
+            label: Text
+            name: 5418fa3c
+            widget: string
+          - hint: 'Original text: 96, key: 71d'
+            label: Text
+            name: 71d
+            widget: string
+          - hint: 'Original text:  jobs from Remote OK and , key: 2b4a93bf'
+            label: Text
+            name: 2b4a93bf
+            widget: string
+          - hint: 'Original text: 128, key: be37'
+            label: Text
+            name: be37
+            widget: string
+          - hint: 'Original text:  jobs from Remotive., key: 61702a9'
+            label: Text
+            name: 61702a9
+            widget: string
+          - hint: 'Original text: Toptal, key: -6a5811b6'
+            label: Text
+            name: '-6a5811b6'
+            widget: string
+          - hint: 'Original text:  is hiring, key: 57a34a47'
+            label: Text
+            name: 57a34a47
+            widget: string
+          - hint: 'Original text: Senior Web App Designer, key: 7c232b86'
+            label: Text
+            name: 7c232b86
+            widget: string
+          - hint: 'Original text: Worldwide ➝ Remotive.com, key: -51a53576'
+            label: Text
+            name: '-51a53576'
+            widget: string
+          - hint: 'Original text: This is , key: 4cfc57d4'
+            label: Text
+            name: 4cfc57d4
+            widget: string
+          - hint: 'Original text: Sidelist, key: 10d66e95'
+            label: Text
+            name: 10d66e95
+            widget: string
+          - hint: 'Original text:  product., key: 4cb9b13f'
+            label: Text
+            name: 4cb9b13f
+            widget: string
+          - hint: 'Original text: Zapier, key: -60e06fd3'
+            label: Text
+            name: '-60e06fd3'
+            widget: string
+          - hint: >-
+              Original text: Zapier is a product that allows end users to
+              integrate the web applications they use and automate workflows.
+              The company is fully remote. As of 2021, it connects to more than
+              4,000 apps, with free and paid plans., key: 1bd57535
+            label: Text
+            name: 1bd57535
+            widget: text
+          - hint: 'Original text: https://zapier.com/, key: 3bc991e0'
+            label: Text
+            name: 3bc991e0
+            widget: string
+          - hint: 'Original text: Hiring locations, key: 2cb1e4cf'
+            label: Text
+            name: 2cb1e4cf
+            widget: string
+          - hint: 'Original text: Worldwide, key: -45912ebb'
+            label: Text
+            name: '-45912ebb'
+            widget: string
+          - hint: 'Original text: US, key: a9e'
+            label: Text
+            name: a9e
+            widget: string
+          - hint: 'Original text: Europe, key: 7c64a1c2'
+            label: Text
+            name: 7c64a1c2
+            widget: string
+          - hint: 'Original text: 96 remote jobs at zapier, key: 2745efa7'
+            label: Text
+            name: 2745efa7
+            widget: string
+          - hint: 'Original text:  jobs, key: 1f4cc76'
+            label: Text
+            name: 1f4cc76
+            widget: string
+          - hint: >-
+              Original text:  is hiring Senior Web App Designer in Worldwide,
+              key: 5c387c9d
+            label: Text
+            name: 5c387c9d
+            widget: string
+      - label: Links
+        name: links
+        file: cms/_data/links.json
+        fields:
+          - label: Title
+            name: title
+            widget: hidden
+            default: Links
+          - hint: 'Original link: #top, key: 11aa52'
+            label: Link
+            name: 11aa52
+            widget: string
+          - hint: 'Original link: https://remoteok.io/, key: -3a14a734'
+            label: Link
+            name: '-3a14a734'
+            widget: string
+          - hint: 'Original link: https://remotive.com/, key: -efb34c'
+            label: Link
+            name: '-efb34c'
+            widget: string
+          - hint: 'Original link: https://designfromanywhere.web.app/, key: 2ef0104'
+            label: Link
+            name: 2ef0104
+            widget: string
+          - hint: 'Original link: https://sidelist.webflow.io/, key: 474059b3'
+            label: Link
+            name: 474059b3
+            widget: string
+          - hint: 'Original link: #, key: 23'
+            label: Link
+            name: '23'
+            widget: string
+      - label: Images
+        name: images
+        file: cms/_data/images.json
+        fields:
+          - label: Title
+            name: title
+            widget: hidden
+            default: Images
+          - label: Image
+            name: '-3ce31d8a'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '-3c75993c'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+local_backend: true
+publish_mode: editorial_workflow
