@@ -19,10 +19,7 @@ functions = "functions"
 
     # All the feeds we wish to gather for use in the build
 
-    [[plugins.inputs.feeds]]
-      name = "ROK"
-      url = "https://remoteok.com/api?tag=design"
-      ttl = 3600
+
     [[plugins.inputs.feeds]]
       name = "RNOTIVE"
       url = "https://remotive.io/api/remote-jobs"
